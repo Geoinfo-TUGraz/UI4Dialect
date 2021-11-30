@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32.0px"
+   height="32.0px"
+   viewBox="0 0 32.0 32.0"
+   version="1.1"
+   id="SVGRoot"
+   sodipodi:docname="favicon.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview12980"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="px"
+     showgrid="true"
+     inkscape:zoom="11.859035"
+     inkscape:cx="24.158796"
+     inkscape:cy="26.941484"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid12986" />
+  </sodipodi:namedview>
+  <defs
+     id="defs12975" />
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path11995"
+       style="fill:#f2f2f2;stroke:#808080;stroke-width:0.0589948"
+       d="m 13.314756,7.5735217 a 2.1046085,1.4727345 0 0 1 2.104572,1.4727643 2.1046085,1.4727345 0 0 1 -2.104572,1.472647 2.1046085,1.4727345 0 0 1 -0.564326,-0.05444 l -1.097243,0.883799 0.404337,-1.121024 A 2.1046085,1.4727345 0 0 1 11.210072,9.0462875 2.1046085,1.4727345 0 0 1 13.314756,7.5735232 Z" />
+    <path
+       id="path3598"
+       style="fill:#f2f2f2;stroke:#808080;stroke-width:0.0993223"
+       d="m 16.157267,5.7461471 a 3.6007116,2.439956 0 0 0 -3.600645,2.4400051 3.6007116,2.439956 0 0 0 3.600645,2.4398108 3.6007116,2.439956 0 0 0 0.965492,-0.0902 L 19,12 18.308227,10.14274 A 3.6007116,2.439956 0 0 0 19.75811,8.1861581 3.6007116,2.439956 0 0 0 16.157267,5.7461521 Z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.97289px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0993223"
+       x="13.930592"
+       y="9.2521009"
+       id="text10059"><tspan
+         sodipodi:role="line"
+         id="tspan10057"
+         style="stroke-width:0.0993223"
+         x="13.930592"
+         y="9.2521009">...</tspan></text>
+    <path
+       id="path12106"
+       style="fill:#000055;stroke:#000000;stroke-width:0.1506"
+       d="m 15.781212,0.384012 c -4.840301,-7.4e-7 -8.763897,3.9238897 -8.763897,8.7641907 0,4.8403013 8.763897,22.9161433 8.763897,22.9161433 0,0 8.764191,-18.075842 8.764191,-22.9161433 0,-4.8403003 -3.923889,-8.7641907 -8.764191,-8.7641907 z m 0,2.9452223 a 5.7469768,5.7469768 0 0 1 5.747199,5.7471987 5.7469768,5.7469768 0 0 1 -5.747199,5.746905 5.7469768,5.7469768 0 0 1 -5.746905,-5.746905 5.7469768,5.7469768 0 0 1 5.746905,-5.7471987 z" />
+  </g>
+</svg>

@@ -1,0 +1,819 @@
+/* 
+
+  CSS file for project "UI4Dialect"
+  Author: GW
+  Last modified: 28-11-2021 
+  
+*/
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+#mapid {
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+  top: 50px;
+  bottom: 0px;
+}
+
+/* 
+    Header 
+*/
+#header {
+  position: relative;
+  box-shadow: 2px 2px 5px gray;
+  z-index: 15;
+}
+
+#header-home {
+  padding: 0;
+  font-size: 20px;
+}
+
+#header-links {
+  font-size: 16px;
+}
+
+
+/*
+    Searchbox
+*/
+#searchbox {
+  z-index: 16;
+  position: absolute;
+  margin: 8px 0px 0px 8px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 2px 2px 5px gray;
+  width: 540px;
+}
+
+#searchbox-tabs button {
+  font-size: 14px;
+  padding: 8px 8px 8px 8px;
+  color: gray;
+  border: 0;
+  border-top: 3px solid #FFF;
+}
+
+#searchbox-tabs button:hover {
+  background-color: #f6f6f6;
+}
+
+#searchbox-tabs button.active {
+  color: #000000;
+  border-radius: 0;
+  border-top: 3px solid #199300;
+}
+
+
+
+
+/* 
+     Searchresult
+*/
+.searchresult-div-style {
+  width: 355px;
+  height: auto;
+  z-index: 15;
+  position: absolute;
+  overflow: auto;
+  scrollbar-width: thin;
+  display: none;
+}
+
+.searchresult-border-style {
+  padding: 5px;
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: silver;
+  box-shadow: 2px 2px 5px gray;
+  background-color: white;
+}
+
+.searchresult-location-lemma {
+  margin: 106px 0 8px 8px;
+  max-height: 70vh;
+}
+
+.searchresult-visualquery {
+  margin: 119px 0 8px 8px;
+  max-height: 68vh;
+}
+
+.searchresult-levenshtein {
+  margin: 298px 0 8px 8px;
+  max-height: 50vh;
+}
+
+.searchresult-statistics {
+  margin: 244px 0 8px 8px;
+  max-height: 47vh;
+}
+
+.searchresult-nl2sparql {
+  margin: 170px 0 8px 8px;
+  max-height: 60vh;
+  width: 475px !important
+}
+
+#searchresult select {
+  width: 100%;
+}
+
+/*Navigationbar (Tabs)*/
+#searchresult-tabs button {
+  border-radius: 5px 5px 0px 0px;
+  margin-right: 2px;
+  font-size: 14px;
+}
+
+#searchresult-tabs button:hover {
+  filter: brightness(90%);
+}
+
+#searchresult-tabs button.active {
+  border-top: 3px solid #199300;
+  font-size: 16px;
+  line-height: 15pt;
+}
+
+
+
+/*
+    Voucherdetails
+*/
+#searchresult-voucherdetails {
+  width: 425px;
+  margin: 70px 0px 8px 8px;
+  padding-right: 25px;
+  display: none;
+}
+
+.header-voucherdetails {
+  background-color: #0083ae;
+  margin: -8px -25px 5px -8px;
+  padding: 5px 5px 5px 40px;
+  font-weight: bold;
+  color: white;
+  display: block;
+  font-size: 21px !important;
+}
+
+.header-searchresult-simple {
+  background-color: #0083ae;
+  margin: -8px -5px 5px -8px;
+  padding: 5px 5px 5px 10px;
+  font-weight: bold;
+  color: white;
+  display: block;
+  font-size: 21px !important;
+  overflow-x: hidden;
+}
+
+#btn-back {
+  width: 29px;
+  height: 25px;
+  background-color: #0083ae;
+  color: white;
+  border: 2px solid #0083ae;
+  border-radius: 10%;
+  padding-top: 0px;
+  padding-left: 3px;
+  margin-top: 2px;
+  position: absolute;
+  z-index: 20;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 19px;
+}
+
+#btn-back:hover {
+  background-color: #009ace;
+  color: white;
+  border: 2px solid #009ace;
+}
+
+#btn-back:focus {
+  background-color: #00a1d6;
+  ;
+  color: white;
+  border: 2px solid #00a1d6;
+}
+
+.tableheadings-voucherdetails {
+  font-size: 16px;
+}
+
+
+/*
+    Location
+*/
+#select-location {
+  float: left;
+  margin: 8px 0px 8px 8px;
+  padding: 6px 27px 6px 5px;
+}
+
+
+
+/*
+    Lemma
+*/
+#div-lemmasearch {
+  float: left;
+}
+
+.select-location-for-lemma {
+  width: 190px;
+}
+
+
+
+/*
+    Levenshtein/Statistics controls
+*/
+.info {
+  padding: 6px 8px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.info h4 {
+  margin: 0 0 5px;
+  color: #777;
+}
+
+.legend {
+  line-height: 18px;
+  color: #555;
+}
+
+.legend i {
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+
+
+/* 
+    Autocomplete Livebox Location & Lemma 
+*/
+.ui-autocomplete {
+  max-height: 500px;
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+  /* add padding to account for vertical scrollbar */
+  padding-right: 20px;
+
+}
+
+#autocomplete-location {
+  width: 280px;
+  float: left;
+  margin: 8px 8px 8px 0px;
+}
+
+#autocomplete-lemma {
+  width: 395px;
+  float: left;
+}
+
+
+/*
+    Levenshtein 
+*/
+#input-levenshtein {
+  margin-bottom: 0px;
+  width: 300px;
+  margin-left: 15px;
+}
+
+#slider-levenshtein {
+  margin-left: 15px;
+  width: 265px;
+  border-top-style: solid;
+  margin-top: 5px;
+}
+
+#slider-levenshtein-output {
+  width: 25px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-top-style: solid;
+  border-top-width: 0px;
+  border-radius: 5px;
+  margin-left: 4px;
+  display: inline-block;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  background-color: steelblue;
+}
+
+#select-levenshtein {
+  padding-left: 5px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  width: 300px;
+}
+
+
+
+/*
+    Statistics
+*/
+.select-style {
+  width: 300px !important;
+  margin-left: 15px;
+  padding-left: 5px;
+}
+
+#select-statistic-locationlevel {
+  margin-bottom: 20px;
+}
+
+
+/*
+    NL -> Sparql
+*/
+
+#btn-nl2sparql {
+  width: 160px !important;
+  font-size: 14px;
+}
+
+#input-nl2sparql {
+  float: left;
+  width: 386px;
+}
+
+
+/*
+    Misc 
+*/
+/* Button Group Belege Location & Visualquery */
+.button-voucher {
+  color: #000;
+  background-color: #e5f0ff;
+  border-color: #6a6a6a;
+  line-height: 16px;
+  margin-top: -6px !important;
+}
+
+.button-voucher:hover {
+  filter: brightness(95%);
+}
+
+.btn-group-vertical {
+  display: inline;
+}
+
+/* Label */
+.label-style {
+  display: inline-block;
+  width: 140px;
+  text-align: left;
+}
+
+/* Select */
+.form-select {
+  display: inline-block;
+  width: auto;
+}
+
+/* Textbox */
+.form-control {
+  display: inline-block;
+  width: auto;
+}
+
+.margin-8px-all-sides {
+  margin: 8px;
+}
+
+.button-search {
+  width: 300px;
+  float: left;
+  font-size: 14px;
+  margin-left: 15px;
+  margin-bottom: 8px;
+  ;
+}
+
+.color-picker {
+  width: 50px;
+  height: 25px;
+  padding: 0;
+  border-color: black;
+  border-radius: 5px;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.btn-footer {
+  margin: 10px 2px 0px 0px;
+  width: 105px;
+  font-size: 14px;
+}
+
+.btn-success:disabled {
+  background-color: grey;
+  border-color: grey;
+}
+
+.btn-remove-layer-from-layercontrol {
+  vertical-align: middle;
+}
+
+.btn-close {
+  color: red;
+}
+
+/*no focus around collapse button in nav*/
+.btn-link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#ui-simple, #ui-advanced {
+  height: 200px;
+  width: 250px;
+  font-style: normal;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+
+#ui-advanced {
+  margin-left: 5px;
+}
+
+
+/* 
+    Loading Spinner 
+*/
+.loading-spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #0b5586ec;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  float: left;
+  display: none;
+}
+
+.spinner-margin-location {
+  margin: 16px 2px 2px -3px;
+}
+
+.spinner-margin-lemma {
+  margin: 8px 2px 2px 5px;
+}
+
+.spinner-margin-visualquery {
+  margin-right: 10px;
+  float: right
+}
+
+.spinner-margin-levenshtein {
+  margin: 9px 5px 5px 5px;
+}
+
+.spinner-margin-statistics {
+  margin: 9px 5px 5px 5px;
+}
+
+.spinner-margin-sparql {
+  margin: 9px 5px 5px 5px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* 
+    Help Button 
+*/
+#button-help {
+  margin-right: 20px;
+  margin-left: 25px;
+  line-height: 1.2;
+}
+
+#button-help:hover {
+  background-color: rgb(19, 59, 116);
+}
+
+
+
+/*
+    Alertbox
+    The alert message box
+*/
+.alert {
+  z-index: 15;
+  position: absolute;
+  padding: 8px;
+  margin: 55px 0px 15px 555px;
+  border-top-style: solid;
+  border-top-width: 0px;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  opacity: 0;
+  display: none;
+}
+
+
+
+/*
+    Errorbox
+    The error message box
+*/
+.error {
+  z-index: 15;
+  position: absolute;
+  bottom: 20px;
+  right: 5px;
+  padding: 8px;
+  border-top-style: solid;
+  border-top-width: 0px;
+  border-radius: 5px;
+  background-color: #f44336;
+  color: white;
+  opacity: 0;
+  display: none;
+}
+
+.fade_animation {
+  display: inherit;
+  animation: fadeOut 20s forwards;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+
+/* 
+    Tabs 
+*/
+.tab-overflow {
+  height: auto;
+  overflow-x: auto;
+  overflow-y: clip;
+  scrollbar-width: thin;
+
+  line-height: 18px;
+  display: block ruby;
+}
+
+/* 
+    Span Close Tab 
+*/
+.span-close {
+  font-size: 15pt;
+}
+
+.span-close:hover {
+  color: red;
+}
+
+.span-close-simple {
+  font-size: 15pt;
+}
+
+.span-close-simple:hover {
+  color: red;
+}
+
+#button-close-searchresult {
+  border: 0;
+  background-color: #0083ae;
+  height: 25px;
+  width: 25px;
+  float: right;
+  margin-top: -3px;
+  color: white;
+}
+
+
+
+/*
+    Popup Styles for Lemma and Levenshtein 
+*/
+.custom-popup-style .leaflet-popup-content-wrapper .popup-title {
+  margin: 0px;
+  background-color: #38F;
+  color: white;
+  border-radius: 2px;
+  padding: 3px;
+  font-size: 14px;
+}
+
+.custom-popup-style .leaflet-popup-content-wrapper .popup-text {
+  margin-top: 10px;
+  margin-bottom: 2px;
+  padding-left: 2px;
+}
+
+.custom-popup-style .leaflet-popup-content-wrapper .popup-list-items {
+  padding-left: 20px;
+}
+
+
+
+/* 
+    Modal for Help
+    Source: https://www.w3schools.com/howto/howto_css_modals.asp
+*/
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 20;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.modal-close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal h4 {
+  font-weight: 600;
+}
+
+
+
+/* 
+    Popup - for NL2SPARQL
+*/
+/* Popup container */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 500px;
+  background-color: #555;
+  color: #fff;
+  text-align: left;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 20;
+  bottom: 50%;
+  left: 100%;
+  margin-left: 2px;
+  margin-bottom: -122px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 0%;
+  margin-left: -10px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #555 transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+/* 
+    Tables
+*/
+#searchresult th, #searchresult-voucherdetails th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f2f2f2;
+  color: rgb(0, 0, 0);
+  width: 50%;
+}
+
+#searchresult td, #searchresult th, #searchresult-voucherdetails td, #searchresult-voucherdetails th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#searchresult table, #searchresult-voucherdetails table {
+  width: 100%;
+}
+
+
+
+/* 
+    font-sizes 
+*/
+select, p, table *, ul *, input, label, textarea {
+  font-size: 14px !important;
+}
