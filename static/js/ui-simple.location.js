@@ -105,7 +105,7 @@ function createHTMLCodeForSearchresultLocation(vouchers, locations, people, loca
 	htmlData += "</div><hr>";
 
 
-	//Create unordered lists for citys, municipalities, regions
+	//Create unordered lists for places, municipalities, regions
 	htmlData += "<div class='location-unordered-lists'><p></p>";
 	//Regions
 	if (Object.keys(locations.regionen).length > 0) {
@@ -132,7 +132,7 @@ function createHTMLCodeForSearchresultLocation(vouchers, locations, people, loca
 		}
 		htmlData += "</ul><br>";
 	}
-	//Citys
+	//Places
 	if (Object.keys(locations.orte).length > 0) {
 		htmlData += "<h5>" + lang.places + "</h5>";
 		htmlData += "<ul>";
@@ -175,7 +175,7 @@ function createHTMLCodeForSearchresultLocation(vouchers, locations, people, loca
 	return htmlData;
 };
 
-/** Listens to clicks on corresponding citys, municipalities, regions in unordered list */
+/** Listens to clicks on corresponding places, municipalities, regions in unordered list */
 $(document).on('click', '.unordered-list-region', function (e) {
 	//Get values from target
 	var regionId = e.target.getAttribute('data-region-id');

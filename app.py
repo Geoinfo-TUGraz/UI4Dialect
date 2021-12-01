@@ -103,9 +103,9 @@ def init_loadLocations():
     # --Places--
     places = init_get_places()
     # Save Place ID and Place name + municipality name in list
-    for city in places["results"]["bindings"]:
-        location_list.append({"label": str(city["ortName"]["value"]) + " (Gem. " + str(
-            city["gemeindeName"]["value"]) + ")", "value": str(city["ortId"]["value"])})
+    for place in places["results"]["bindings"]:
+        location_list.append({"label": str(place["ortName"]["value"]) + " (Gem. " + str(
+            place["gemeindeName"]["value"]) + ")", "value": str(place["ortId"]["value"])})
 
     # --Municipalities--
     municipalities = init_get_municipalies()

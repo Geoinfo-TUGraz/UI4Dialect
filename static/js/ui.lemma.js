@@ -246,7 +246,7 @@ function createHTMLCodeForSearchresultLemma(lemma, standardGerman, dbpedia, lemm
 
 
 
-/** Select a city, municipality or region in the select controls */
+/** Select a place, municipality or region in the select controls */
 $(document).on('change', '.select-location-for-lemma', function (e) {
 	//Get location id of selected location
 	var targetLocationId = e.target.value;

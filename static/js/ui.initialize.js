@@ -28,7 +28,7 @@ function initAjaxRequestForLocations() {
 		url: "/init_loadLocations",
 	}).done(function (res) {
 		$("#autocomplete-location").autocomplete({
-			source: res, //input data for the livebox
+			source: res, //input data for autocomplete
 			minLength: 3, //show suggestions only after 3 input characters
 			focus: function (event, ui) {
 				event.preventDefault();
@@ -69,7 +69,7 @@ function initAjaxRequestForLemmata(isLocationdataLoaded) {
 		url: "/init_loadLemmata",
 	}).done(function (res) {
 		$("#autocomplete-lemma").autocomplete({
-			source: res, //input data for the livebox
+			source: res, //input data for autocompelte
 			minLength: 3, //show suggestions only after 3 input characters
 			focus: function (event, ui) {
 				event.preventDefault();
@@ -110,14 +110,14 @@ function initAjaxRequestForLemmata(isLocationdataLoaded) {
 
 /** Renders the items of the autocomplete */
 var renderItem = function (ul, item) {
-	//Get the value of the select element (City=1, Municipality=2, Region=3)
+	//Get the value of the select element (Place=1, Municipality=2, Region=3)
 	var locationLevel = $('#select-location').val();
 
 	//Add the .ui-state-highlight class and highlight text
 	var newText = String(item.label).replace(
 		new RegExp(this.term, "gi"), "<span class='ui-state-highlight'>$&</span>");
 
-	//Add the value to the livebox depending on the level (City, Municipality, Region)
+	//Add the value to the autocompelte depending on the level (Place, Municipality, Region)
 	if ((locationLevel == 1) && (item.value.includes('ort'))) {
 		return $("<li>")
 			.append("<a>" + newText + "</a>")
