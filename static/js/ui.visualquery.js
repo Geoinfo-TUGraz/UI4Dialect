@@ -46,7 +46,7 @@ function initVisualquery() {
 	});
 }
 
-/** Creates ajax request for loading visualquery data from the database and create a layer from it */
+/** Performs ajax request for loading visualquery data from the database and creates a layer from it */
 function ajaxRequestForVisualquery(queryPolygon, visualqueryGeoJSON) {
 
 	//Show loading graphic
@@ -57,12 +57,12 @@ function ajaxRequestForVisualquery(queryPolygon, visualqueryGeoJSON) {
 		type: 'POST',
 		contentType: "application/json",
 		data: JSON.stringify({ "queryPolygon": queryPolygon })
-	}).done(function (dict_voucher) {
+	}).done(function (dict_record) {
 
 		var colorValueOfLayer = "#0083ae"; //set color value of layer
 
-		//Store voucher data in GeoJSON
-		visualqueryGeoJSON.properties["belege"] = dict_voucher;
+		//Store dialect data in GeoJSON
+		visualqueryGeoJSON.properties["belege"] = dict_record;
 
 		//Create Leaflet Layer from GeoJSON
 		visualqueryLayer = L.geoJson(visualqueryGeoJSON, {
@@ -106,14 +106,14 @@ function createHTMLCodeForSearchresultVisualquery(visualqueryGeoJSON, colorValue
 
 	var htmlData = "";
 
-	//Create button group with vouchers
-	htmlData += "<h5 style='margin-top: 10px;'>" + lang.vouchers + "</h5>"
+	//Create button group with dialect records
+	htmlData += "<h5 style='margin-top: 10px;'>" + lang.records + "</h5>"
 
 	if (Object.keys(visualqueryGeoJSON.properties["belege"]).length > 0) {
 
 		htmlData += "<div class='btn-group-vertical'>"
-		for (const [voucherId, voucherdescription] of Object.entries(visualqueryGeoJSON.properties["belege"])) {
-			htmlData += "<button type='button' class='btn button-voucher' data-source='visualquery' data-voucher-id='" + voucherId + "'>" + voucherdescription + "</button>"
+		for (const [recordId, recordDescription] of Object.entries(visualqueryGeoJSON.properties["belege"])) {
+			htmlData += "<button type='button' class='btn button-record' data-source='visualquery' data-record-id='" + recordId + "'>" + recordDescription + "</button>"
 		}
 
 		htmlData += "</div>"
@@ -123,7 +123,7 @@ function createHTMLCodeForSearchresultVisualquery(visualqueryGeoJSON, colorValue
 	}
 	htmlData += "<hr>"
 
-	//Footes buttons
+	//Footer buttons
 	htmlData += "<label class='label-style' style='vertical-align: middle'>" + lang.layercolor + "<input type='color' class='color-picker' value='" + colorValue + "'></label></br></br>"
 	htmlData += "<button class='btn-add-layer-to-layercontrol btn-success btn-footer' title='" + lang.saveLayer + "'><i class='bi bi-bookmark-plus'></br>" + lang.saveLayer + "</i></button>"
 	htmlData += "<button class='btn-change-tabname btn-success btn-footer' title='" + lang.renameLayer + "'><i class='bi bi-pencil'></br>" + lang.renameLayer + "</i></button>";
@@ -132,7 +132,7 @@ function createHTMLCodeForSearchresultVisualquery(visualqueryGeoJSON, colorValue
 	return htmlData;
 }
 
-/** Restores the visualquery data when layer is re-enabled in layerControl */
+/** Restores the attribute data when layer is re-enabled in layerControl */
 function restoreSearchresultVisualquery(layer) {
 
 	//Get GeoJSON from leaflet layer

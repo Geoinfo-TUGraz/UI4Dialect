@@ -10,7 +10,7 @@ function selectLemmaInAutocomplete() {
 	ajaxRequestForLemma(lemmaId);
 }
 
-/** Creates ajax request for loading lemma data from database and create a layer from it */
+/** Performs ajax request for loading lemma data from database and creates a layer from it */
 function ajaxRequestForLemma(lemmaId) {
 	$.ajax({
 		url: '/searchLemma',
@@ -34,10 +34,10 @@ function ajaxRequestForLemma(lemmaId) {
 			onEachFeature: function (feature, layer) {
 				//Create Popup
 				var locationName = feature.properties.lokationName;
-				var popString = "<div><p class='popup-title'>" + locationName + "</p><p class='popup-text'>" + lang.voucher_s + "</p><ul class='popup-list-items'>";
+				var popString = "<div><p class='popup-title'>" + locationName + "</p><p class='popup-text'>" + lang.record_s + "</p><ul class='popup-list-items'>";
 
-				for (const [voucherId, voucherdescription] of Object.entries(feature.properties.belege)) {
-					popString += "<li><a href='#' data-voucher-id='" + voucherId + "'>" + voucherdescription + "</a></li>"
+				for (const [recordId, recordDescription] of Object.entries(feature.properties.belege)) {
+					popString += "<li><a href='#' data-record-id='" + recordId + "'>" + recordDescription + "</a></li>"
 				}
 
 				// specify popup options 
@@ -371,17 +371,17 @@ function popupClickLemma(e) {
 	//Check if link is clicked
 	if ($(e.target).closest('a').length) {
 
-		//Get voucher id and voucher word
-		var voucherId = e.target.getAttribute('data-voucher-id');
-		var voucherdescription = e.target.innerText;
+		//Get record id and dialect word
+		var recordId = e.target.getAttribute('data-record-id');
+		var recordDescription = e.target.innerText;
 		var source = 'lemma'
 
-		//Load data for selected voucher
-		ajaxRequestForVoucherdetails(voucherId, voucherdescription, source);
+		//Load data for selected record
+		ajaxRequestForRecorddetails(recordId, recordDescription, source);
 	}
 };
 
-/** Restores the lemma data when layer is re-enabled in layerControl */
+/** Restores the attribute data when layer is re-enabled in layerControl */
 function restoreSearchresultLemma(layer) {
 
 	//Get GeoJSON from leaflet layer

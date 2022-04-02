@@ -1,4 +1,4 @@
-/** Creates ajax request for loading statistics data from database and create a layer from it */
+/** Performs ajax request for loading statistics data from database and creates a layer from it */
 function ajaxRequestForStatistics(selectLocationLevel, locationLevelText) {
 	$.ajax({
 		url: '/searchStatistics',
@@ -14,7 +14,7 @@ function ajaxRequestForStatistics(selectLocationLevel, locationLevelText) {
 		info.update = updateInfo;
 		info.addTo(mymap);
 
-		countLocationsWithVouchers = Object.keys(JSON.parse(statisticsGeoJSON_str).features).length
+		countLocationsWithRecords = Object.keys(JSON.parse(statisticsGeoJSON_str).features).length
 		//Parse GeoJSON data to object
 		statisticsGeoJSON = JSON.parse(statisticsGeoJSON_str);
 
@@ -31,7 +31,7 @@ function ajaxRequestForStatistics(selectLocationLevel, locationLevelText) {
 			statisticsLayer.id = statisticsLayer._leaflet_id;
 
 			//Create HTML and add to searchresult
-			htmlData = createHTMLCodeForSearchresultStatistics(countLocationsWithVouchers, statisticsGeoJSON);
+			htmlData = createHTMLCodeForSearchresultStatistics(countLocationsWithRecords, statisticsGeoJSON);
 			addDataToSearchresult(statisticsLayer.id, locationLevelText, htmlData);
 
 			//Add additional class
@@ -99,7 +99,7 @@ function createHTMLCodeForSearchresultStatistics(countLocations, statisticsGeoJS
 	}
 	htmlData += "</select><hr>"
 
-	//Footes buttons
+	//Footer buttons
 	htmlData += "<button class='btn-add-layer-to-layercontrol btn-success btn-footer' title='" + lang.saveLayer + "'><i class='bi bi-bookmark-plus'></br>" + lang.saveLayer + "</i></button>"
 	htmlData += "<button class='btn-change-tabname btn-success btn-footer' title='" + lang.renameLayer + "'><i class='bi bi-pencil'></br>" + lang.renameLayer + "</i></button>";
 	htmlData += "<button class='btn-download-geojson btn-success btn-footer' title='" + lang.downloadGeojson + "'><i class='bi bi-download'></br>" + lang.downloadGeojson + "</i></button>";
@@ -116,14 +116,14 @@ $(document).on('change', '.select-location-for-levenshtein-statistics', function
 });
 
 
-/** Restores the statistics data when layer is re-enabled in layerControl */
+/** Restores the attribute data when layer is re-enabled in layerControl */
 function restoreSearchresultStatistics(layer) {
 	//Get GeoJSON from leaflet layer
 	statisticsGeoJSON = layer.toGeoJSON();
 
-	countLocationsWithVouchers = Object.keys(statisticsGeoJSON.features).length
+	countLocationsWithRecords = Object.keys(statisticsGeoJSON.features).length
 	tabText = getLayernameFromLayerControl(layer.id)
-	htmlData = createHTMLCodeForSearchresultStatistics(countLocationsWithVouchers, statisticsGeoJSON);
+	htmlData = createHTMLCodeForSearchresultStatistics(countLocationsWithRecords, statisticsGeoJSON);
 	addDataToSearchresult(layer.id, tabText, htmlData);
 	disableAddLayerButton(layer.id);
 	setColorOfTab("#ececec", layer.id)

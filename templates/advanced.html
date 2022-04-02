@@ -254,10 +254,10 @@
             <!-- Statistics -->
             <div class="tab-pane fade margin-8px-all-sides" id="searchbox-statistics-tab-content" role="tabpanel"
                 aria-labelledby="searchbox-statistics-tab">
-                <label class='label-style' for="select-statistic-type">{{showStats}}</label>
+                <label for="select-statistic-type">{{showStats}}</label>
                 </br>
                 <select class="form-select select-style" id="select-statistic-type">
-                    <option value="1" selected="selected">{{vouchers}}</option>
+                    <option value="1" selected="selected">{{statRecords}}</option>
                 </select>
                 </br>
                 <label class='label-style' for="select-statistic-locationlevel">{{level}}:</label>
@@ -321,8 +321,8 @@
         <div class="tab-content" id="searchresult-tab-content">
         </div>
     </div>
-    <!-- Searchresults Voucherdetails -->
-    <div id="searchresult-voucherdetails" class='searchresult-border-style searchresult-div-style'>
+    <!-- Searchresults Recorddetails -->
+    <div id="searchresult-recorddetails" class='searchresult-border-style searchresult-div-style'>
     </div>
 
     <!-- Leaflet Script -->
@@ -382,7 +382,7 @@
     <script src="{{ url_for('static', filename='js/ui.choroplethFunctions.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ui.levenshtein.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ui.statistics.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/ui.voucherdetails.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ui.recorddetails.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ui.misc.js') }}"></script>
     <script src="{{ url_for('static', filename='js/ui.nl2sparql.js') }}"></script>
     <script src="{{ url_for('static', filename='language/' + file) }}"></script>

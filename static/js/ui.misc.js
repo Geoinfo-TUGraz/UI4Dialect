@@ -22,7 +22,7 @@ $(document).on('click', '#searchbox-tabs .nav-link', function (e) {
 	removeAllTabsFromSearchresult();
 	removeAllClassesFromSearchresult();
 
-	$("#searchresult-voucherdetails").attr("data-is-active", "false");
+	$("#searchresult-recorddetails").attr("data-is-active", "false");
 
 	var searchboxTabClicked = e.target.id;
 
@@ -487,16 +487,16 @@ function removeDataFromSearchresult(id) {
 
 function hideDivSearchresult() {
 	$("#searchresult").hide();
-	$('#searchresult-voucherdetails').hide();
+	$('#searchresult-recorddetails').hide();
 }
 
 function unfoldDivSearchresult() {
-	if ($("#searchresult-voucherdetails").attr("data-is-active") == "true") {
-		//searchresult-voucherdetails was active
-		$('#searchresult-voucherdetails').show();
+	if ($("#searchresult-recorddetails").attr("data-is-active") == "true") {
+		//searchresult-recorddetails was active
+		$('#searchresult-recorddetails').show();
 	}
 	else {
-		//searchresult-voucherdetails was not active
+		//searchresult-recorddetails was not active
 		var countCurrentTabsSearchresult = document.querySelectorAll('#searchresult-tabs button').length
 		if (countCurrentTabsSearchresult > 0) {
 			$('#searchresult').show();

@@ -136,14 +136,14 @@ class Lemma:
                 else:
                     place_geom = 'POINT (0 0)'
 
-                voucher_id = result["belegId"]["value"]
-                voucherdescription = result["belegbezeichnung"]["value"]
+                record_id = result["belegId"]["value"]
+                record_description = result["belegbezeichnung"]["value"]
 
                 if place_id in dict_places:
-                    dict_places[place_id]["belege"][voucher_id] = voucherdescription
+                    dict_places[place_id]["belege"][record_id] = record_description
                 else:
                     dict_places[place_id] = {"belege": {}}
-                    dict_places[place_id]["belege"][voucher_id] = voucherdescription
+                    dict_places[place_id]["belege"][record_id] = record_description
                     dict_places[place_id]["locationName"] = place_name
                     dict_places[place_id]["geom"] = place_geom
 
@@ -158,14 +158,14 @@ class Lemma:
                 else:
                     municipality_geom = 'POINT (0 0)'
 
-                voucher_id = result["belegId"]["value"]
-                voucherdescription = result["belegbezeichnung"]["value"]
+                record_id = result["belegId"]["value"]
+                record_description = result["belegbezeichnung"]["value"]
 
                 if municipality_id in dict_municipalities:
-                    dict_municipalities[municipality_id]["belege"][voucher_id] = voucherdescription
+                    dict_municipalities[municipality_id]["belege"][record_id] = record_description
                 else:
                     dict_municipalities[municipality_id] = {"belege": {}}
-                    dict_municipalities[municipality_id]["belege"][voucher_id] = voucherdescription
+                    dict_municipalities[municipality_id]["belege"][record_id] = record_description
                     dict_municipalities[municipality_id]["locationName"] = municipality_name
                     dict_municipalities[municipality_id]["geom"] = municipality_geom
 
@@ -180,14 +180,14 @@ class Lemma:
                 else:
                     region_geom = 'POINT (0 0)'
 
-                voucher_id = result["belegId"]["value"]
-                voucherdescription = result["belegbezeichnung"]["value"]
+                record_id = result["belegId"]["value"]
+                record_description = result["belegbezeichnung"]["value"]
 
                 if region_id in dict_regions:
-                    dict_regions[region_id]["belege"][voucher_id] = voucherdescription
+                    dict_regions[region_id]["belege"][record_id] = record_description
                 else:
                     dict_regions[region_id] = {"belege": {}}
-                    dict_regions[region_id]["belege"][voucher_id] = voucherdescription
+                    dict_regions[region_id]["belege"][record_id] = record_description
                     dict_regions[region_id]["locationName"] = region_name
                     dict_regions[region_id]["geom"] = region_geom
 
@@ -206,31 +206,31 @@ class Lemma:
         for key in self.dict_places:
             location_id = key
             location_name = self.dict_places[key]["locationName"]
-            vouchers = self.dict_places[key]["belege"]
+            records = self.dict_places[key]["belege"]
             geom = shapely.wkt.loads(self.dict_places[key]["geom"])
 
             feature = Feature(geom, {"lemmaDBO": self.lemma_dbo, "hochdeutsch": self.standard_german, "dbpedia": self.dbpedia,
-                              "lokationId": location_id, "lokationName": location_name, "belege": vouchers, "lokationTyp": "place"})
+                              "lokationId": location_id, "lokationName": location_name, "belege": records, "lokationTyp": "place"})
             features.append(feature)
 
         for key in self.dict_municipalities:
             location_id = key
             location_name = self.dict_municipalities[key]["locationName"]
-            vouchers = self.dict_municipalities[key]["belege"]
+            records = self.dict_municipalities[key]["belege"]
             geom = shapely.wkt.loads(self.dict_municipalities[key]["geom"])
 
             feature = Feature(geom, {"lemmaDBO": self.lemma_dbo, "hochdeutsch": self.standard_german, "dbpedia": self.dbpedia,
-                              "lokationId": location_id, "lokationName": location_name, "belege": vouchers, "lokationTyp": "municipality"})
+                              "lokationId": location_id, "lokationName": location_name, "belege": records, "lokationTyp": "municipality"})
             features.append(feature)
 
         for key in self.dict_regions:
             location_id = key
             location_name = self.dict_regions[key]["locationName"]
-            vouchers = self.dict_regions[key]["belege"]
+            records = self.dict_regions[key]["belege"]
             geom = shapely.wkt.loads(self.dict_regions[key]["geom"])
 
             feature = Feature(geom, {"lemmaDBO": self.lemma_dbo, "hochdeutsch": self.standard_german, "dbpedia": self.dbpedia,
-                              "lokationId": location_id, "lokationName": location_name, "belege": vouchers, "lokationTyp": "region"})
+                              "lokationId": location_id, "lokationName": location_name, "belege": records, "lokationTyp": "region"})
             features.append(feature)
 
         # If no locations are attached to the lemma, set geometry to Point(0,0)

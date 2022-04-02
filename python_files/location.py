@@ -15,7 +15,7 @@ class Location:
     Attributes:
         location_id(str): The ID of the location for which data should be queried
         location_level(str): Level of the location ('1' == Place, '2' == Municipality, '3' == Region)
-        vouchers(dict): Dict for storing the associated voucher data
+        records(dict): Dict for storing the associated dialect record data
         locations(dict): Dict for storing the associated locations
         people(dict): Dict for storing the associated people
         geom(Point, Polygon): Geometry of the location
@@ -24,23 +24,23 @@ class Location:
     def __init__(self, location_id, location_level):
         self.location_id = location_id
         self.location_level = location_level
-        self.vouchers = {}
+        self.records = {}
         self.locations = {}
         self.people = {}
         self.geom = None
 
     def get_data_from_db(self):
         """Calls the methods for querying the database"""
-        self.vouchers = self.__get_vouchers()
+        self.records = self.__get_records()
         self.locations = self.__get_locations()
         self.people = self.__get_people()
         self.geom = self.__get_geometry()
 
-    def __get_vouchers(self):
-        """Queries the database to get vouchers associated with the location
+    def __get_records(self):
+        """Queries the database to get dialect records associated with the location
 
         Returns:
-            dict: Dictionary with voucher data
+            dict: Dictionary with dialect data
         """
         # Define predicate for query depending on location_level
         if self.location_level == '1':
@@ -62,12 +62,12 @@ class Location:
 
         results = query_endpoint(querystring)
 
-        # Store the voucher data in a dictionary
-        vouchers = {}
+        # Store the record data in a dictionary
+        records = {}
         for result in results["results"]["bindings"]:
-            vouchers[result["belegId"]["value"]] = result["belegbezeichnung"]["value"]
+            records[result["belegId"]["value"]] = result["belegbezeichnung"]["value"]
 
-        return vouchers
+        return records
 
     def __get_locations(self):
         """Queries the database to get locations associated with the location
@@ -212,7 +212,7 @@ class Location:
             # If empty geometry-->Point(0,0)
             geometry = Point(0, 0)
         else:
-            # Convert geometery to a Shapely geometry object
+            # Convert geometry to a Shapely geometry object
             geometry = shapely.wkt.loads(results['results']['bindings'][0]['geom']['value'])
 
         return geometry
@@ -224,7 +224,7 @@ class Location:
             str: GeoJSON dictionary
         """
         features = []
-        feature = Feature(self.geom, properties={"belege": self.vouchers, "lokationen": self.locations, "personen": self.people})
+        feature = Feature(self.geom, properties={"belege": self.records, "lokationen": self.locations, "personen": self.people})
         features.append(feature)
         feature_collection = FeatureCollection(features)
         location_data = dumps(feature_collection)

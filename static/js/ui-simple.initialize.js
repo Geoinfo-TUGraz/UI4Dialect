@@ -9,7 +9,7 @@ $(document).ready(function () {
 
 });
 
-/** Creates ajax request for loading location data from database */
+/** Performs ajax request for loading location data from database */
 function initAjaxRequestForLocations() {
 	$.ajax({
 		url: "/init_loadLocations",

@@ -419,7 +419,7 @@ class QueryConstructor:
             str: Querystring
         """
 
-        instance = self.question_values[1]  # DBOLemma, Voucherdescription (Belegbezeichnung)
+        instance = self.question_values[1]  # DBOLemma, Record description (Belegbezeichnung)
         class_of_instance = self.question_values[0]  # Lemma, Beleg
 
         if class_of_instance == 'lemma':
@@ -535,7 +535,7 @@ class QueryConstructor:
         """
         predicate_of_relation = self.question_values[0]
         class_of_instance = self.question_values[1]
-        instance = self.question_values[2]  # voucherdescription
+        instance = self.question_values[2]  # record_description
         variables_for_query, added_term = self.__add_term_for_RCI_query(instance, predicate_of_relation)
 
         querystring = textwrap.dedent('''\
@@ -636,11 +636,11 @@ class QueryConstructor:
 
         return [variables_for_query, added_term]
 
-    def __add_term_for_RCI_query(self, voucherdescription, predicate_of_relation):
+    def __add_term_for_RCI_query(self, record_description, predicate_of_relation):
         """Adds a part to the RCI SPARQL query depending on the arguments
 
         Args:
-            voucherdescription (str): Voucherdescription
+            record_description (str): Record description
             predicate_of_relation (str): Defines the predicate of the relation for the query
 
         Returns:
@@ -650,19 +650,19 @@ class QueryConstructor:
         variables_for_query = ""
 
         if predicate_of_relation == 'hatBedeutung':
-            added_term = '''?belegId dboe:hatBelegbezeichnung "''' + voucherdescription + '''"^^xsd:string.
+            added_term = '''?belegId dboe:hatBelegbezeichnung "''' + record_description + '''"^^xsd:string.
                 ?belegId dboe:hatBedeutung ?bedeutungId.
                 ?bedeutungId dboe:hatBeschreibung ?bedeutung.'''
             variables_for_query = "?bedeutungId ?bedeutung"
 
         if predicate_of_relation == 'hatHauptlemma':
-            added_term = added_term + '''?belegId dboe:hatBelegbezeichnung "''' + voucherdescription + '''"^^xsd:string.
+            added_term = added_term + '''?belegId dboe:hatBelegbezeichnung "''' + record_description + '''"^^xsd:string.
             ?belegId dboe:hatHauptlemma ?hauptlemmaId.
             ?hauptlemmaId dboe:hatDBOlemma ?hauptlemmaDBO.'''
             variables_for_query = "?hauptlemmaId ?hauptlemmaDBO"
 
         if predicate_of_relation == 'hatNebenlemma':
-            added_term = added_term + '''?belegId dboe:hatBelegbezeichnung "''' + voucherdescription + '''"^^xsd:string.
+            added_term = added_term + '''?belegId dboe:hatBelegbezeichnung "''' + record_description + '''"^^xsd:string.
             ?belegId dboe:hatNebenlemma ?nebenlemmaId.
             ?nebenlemmaId dboe:hatDBOlemma ?nebenlemmaDBO.'''
             variables_for_query = "?nebenlemmaId ?nebenlemmaDBO"

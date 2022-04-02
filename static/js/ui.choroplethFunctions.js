@@ -10,12 +10,12 @@ function onAddInfo(map) {
 function updateInfo(properties) {
 	if (currentlyActiveOption == 'levenshtein') {
 		this._div.innerHTML = (properties ?
-			'<b>' + properties.lokationName + '</b><br />' + Object.keys(properties.belege).length.toString() + " " + lang.voucher_s
+			'<b>' + properties.lokationName + '</b><br />' + Object.keys(properties.belege).length.toString() + " " + lang.record_s
 			: lang.hoverPolygon);
 	}
 	else if (currentlyActiveOption == 'statistics') {
 		this._div.innerHTML = (properties ?
-			'<b>' + properties.lokationName + '</b><br />' + lang.amountVouchers + " " + properties.anzahlBelege + ''
+			'<b>' + properties.lokationName + '</b><br />' + lang.amountRecords + " " + properties.anzahlBelege + ''
 			: lang.hoverPolygon);
 	}
 
@@ -29,7 +29,7 @@ function onAddLegend(map) {
 			grades = [1, 2, 3, 4, 5, 6, 7],
 			labels = [];
 
-		div.innerHTML += '<h6>' + lang.vouchers + '</h6>'
+		div.innerHTML += '<h6>' + lang.records + '</h6>'
 		// loop through our density intervals and generate a label with a colored square for each interval
 		for (var i = 0; i < grades.length; i = i + 2) {
 			div.innerHTML +=
@@ -45,7 +45,7 @@ function onAddLegend(map) {
 			grades = [1, 4, 5, 10, 11, 20, 21],
 			labels = [];
 
-		div.innerHTML += '<h6>' + lang.vouchers + '</h6>'
+		div.innerHTML += '<h6>' + lang.records + '</h6>'
 		// loop through our density intervals and generate a label with a colored square for each interval
 		for (var i = 0; i < grades.length; i = i + 2) {
 			div.innerHTML +=
@@ -126,9 +126,9 @@ function onEachFeature(feature, layer) {
 	if (currentlyActiveOption == 'levenshtein') {
 		var locationName = feature.properties.lokationName;
 		
-		var popString = "<div><p class='popup-title'>" + locationName + "</p><p class='popup-text'>" + lang.voucher_s + "</p><ul class='popup-list-items'>";
-		for (const [voucherId, voucherdescription] of Object.entries(feature.properties.belege)) {
-			popString += "<li><a href='#' data-voucher-id='" + voucherId + "'>" + voucherdescription + "</a></li>"
+		var popString = "<div><p class='popup-title'>" + locationName + "</p><p class='popup-text'>" + lang.record_s + "</p><ul class='popup-list-items'>";
+		for (const [recordId, recordDescription] of Object.entries(feature.properties.belege)) {
+			popString += "<li><a href='#' data-record-id='" + recordId + "'>" + recordDescription + "</a></li>"
 		}
 		popString += "</ul></div>"
 
@@ -145,7 +145,7 @@ function onEachFeature(feature, layer) {
 	else {
 		var locationName = feature.properties.lokationName;
 		var popString = "<div><p class='popup-title'>" + locationName + "</p>";
-		popString += "<p class='popup-text'>" + lang.vouchers + ": " + feature.properties.anzahlBelege + "</p></div>";
+		popString += "<p class='popup-text'>" + lang.records + ": " + feature.properties.anzahlBelege + "</p></div>";
 
 		// specify popup options 
 		var popupOptions =

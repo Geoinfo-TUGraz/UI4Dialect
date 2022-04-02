@@ -4,7 +4,7 @@ from flask import jsonify
 
 class Visualquery:
     """
-    A class for querying voucher data for the visual query.
+    A class for querying dialect data for the visual query.
 
     Args:
         query_polygon(str): The geometry of the query polygon as WKT
@@ -17,10 +17,10 @@ class Visualquery:
         self.query_polygon = query_polygon
 
     def get_data_from_db(self):
-        """Queries the database to get vouchers associated to the locations (places, municipalities) which intersect with the query polygon
+        """Queries the database to get dialect records associated to the locations (places, municipalities) which intersect with the query polygon
 
         Returns:
-            str: JSON with voucher data
+            str: JSON with record data
         """
         querystring = '''
         PREFIX dboe: <http://40.91.234.77/ontology/dboe#>
@@ -59,8 +59,8 @@ class Visualquery:
         results = query_endpoint(querystring)
 
         # Store data in dictionary
-        dict_voucher = {}
+        dict_records = {}
         for result in results["results"]["bindings"]:
-            dict_voucher[result["belegId"]["value"]] = result["bezeichnung"]["value"]
+            dict_records[result["belegId"]["value"]] = result["bezeichnung"]["value"]
 
-        return jsonify(dict_voucher)
+        return jsonify(dict_records)

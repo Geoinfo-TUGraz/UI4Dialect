@@ -17,7 +17,7 @@ function selectLocationInAutocomplete() {
 
 };
 
-/** Creates ajax request for loading location data from database and create a layer from it */
+/** Performs ajax request for loading location data from database and creates a layer from it */
 function ajaxRequestForLocation(locationId, locationName, locationLevel) {
 	$.ajax({
 		url: '/searchLocation',
@@ -32,7 +32,7 @@ function ajaxRequestForLocation(locationId, locationName, locationLevel) {
 		locationGeoJSON.features[0].properties.lokationName = locationName;
 
 		//Get values from GeoJSON file
-		var vouchers = locationGeoJSON.features[0].properties.belege;
+		var records = locationGeoJSON.features[0].properties.belege;
 		var locations = locationGeoJSON.features[0].properties.lokationen;
 		var people = locationGeoJSON.features[0].properties.personen;
 		var geom = locationGeoJSON.features[0].geometry;
@@ -65,7 +65,7 @@ function ajaxRequestForLocation(locationId, locationName, locationLevel) {
 		if (isPoint00(geom.coordinates)) { alert(lang.loadInfoGeometry); }
 
 		//Create HTML code for the searchresult div
-		htmlData = createHTMLCodeForSearchresultLocation(vouchers, locations, people, colorValueOfLayer);
+		htmlData = createHTMLCodeForSearchresultLocation(records, locations, people, colorValueOfLayer);
 		//Add the data to the searchresult div
 		addDataToSearchresult(locationLayer.id, locationName, htmlData);
 		//Set the color of the tab
@@ -93,16 +93,16 @@ function ajaxRequestForLocation(locationId, locationName, locationLevel) {
 }
 
 /** Creates HTML code for the location searchresult */
-function createHTMLCodeForSearchresultLocation(vouchers, locations, people, colorValue) {
+function createHTMLCodeForSearchresultLocation(records, locations, people, colorValue) {
 
 	var htmlData = "";
-	htmlData += "<h5 style='margin-top: 10px;'>" + lang.vouchers + "</h5>";
+	htmlData += "<h5 style='margin-top: 10px;'>" + lang.records + "</h5>";
 
-	//Create Button Group with Vouchers
+	//Create Button Group with Dialect Records
 	htmlData += "<div class='btn-group-vertical'>";
-	if (Object.keys(vouchers).length > 0) {
-		for (const [voucherId, voucherdescription] of Object.entries(vouchers)) {
-			htmlData += "<button type='button' class='btn button-voucher' data-source='location' data-voucher-id='" + voucherId + "'>" + voucherdescription + " </button>";
+	if (Object.keys(records).length > 0) {
+		for (const [recordId, recordDescription] of Object.entries(records)) {
+			htmlData += "<button type='button' class='btn button-record' data-source='location' data-record-id='" + recordId + "'>" + recordDescription + " </button>";
 		}
 	}
 	else {
@@ -190,7 +190,7 @@ function createHTMLCodeForSearchresultLocation(vouchers, locations, people, colo
 };
 
 
-/** Restores the location data when layer is re-enabled in layerControl */
+/** Restores the attribute data when layer is re-enabled in layerControl */
 function restoreSearchresultLocation(layer) {
 
 	//Get GeoJSON from leaflet layer
@@ -199,14 +199,14 @@ function restoreSearchresultLocation(layer) {
 	var colorValueOfLayer = getColorFromLayer(layer.id);
 
 	//Get data from GeoJSON
-	vouchers = locationGeoJSON.features[0].properties.belege;
+	records = locationGeoJSON.features[0].properties.belege;
 	locations = locationGeoJSON.features[0].properties.lokationen;
 	people = locationGeoJSON.features[0].properties.personen;
 	locationName = locationGeoJSON.features[0].properties.lokationName;
 
 	//Get tabtext and create html code
 	tabText = getLayernameFromLayerControl(layer._leaflet_id);
-	htmlData = createHTMLCodeForSearchresultLocation(vouchers, locations, people, colorValueOfLayer);
+	htmlData = createHTMLCodeForSearchresultLocation(records, locations, people, colorValueOfLayer);
 
 	//Add data to the searchresult div
 	addDataToSearchresult(layer.id, tabText, htmlData);

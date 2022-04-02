@@ -18,7 +18,7 @@ $(document).ready(function () {
 	initAjaxRequestForLocations();
 });
 
-/** Creates ajax request for loading location data from database */
+/** Performs ajax request for loading location data from database */
 function initAjaxRequestForLocations() {
 
 	//Variable for state
@@ -57,7 +57,7 @@ function initAjaxRequestForLocations() {
 }
 
 
-/** Creates ajax request for loading lemma data from database */
+/** Performs ajax request for loading lemma data from database */
 function initAjaxRequestForLemmata(isLocationdataLoaded) {
 	//Set Placeholder
 	$("#autocomplete-location").attr("placeholder", lang.loadDataLemma);

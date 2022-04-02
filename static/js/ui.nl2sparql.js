@@ -21,7 +21,7 @@ $(document).on('click', '#btn-nl2sparql', function (e) {
 	}
 });
 
-/** Creates ajax request for translating and executing the nl question and create a layer from it */
+/** Performs ajax request for translating and executing the nl question and creates a layer from it */
 function ajaxRequestForNL2SPARQL(nl_question) {
 	$.ajax({
 		url: '/nl2sparql',
@@ -32,7 +32,7 @@ function ajaxRequestForNL2SPARQL(nl_question) {
 
 		var colorValueOfLayer = "#0083ae"; //set color value of layer
 
-		//Parse GeoJSON to json obejct
+		//Parse GeoJSON to json object
 		var sparqlGeoJSON = JSON.parse(sparqlGeoJSON_str);
 
 		if (Object.keys(sparqlGeoJSON.features).length > 0) {
@@ -51,7 +51,7 @@ function ajaxRequestForNL2SPARQL(nl_question) {
 				},
 				pointToLayer: function (feature, latlng) {
 					//Create Points as CircleMarker
-					//Dont show point if its an artificial point (0,0)
+					//Don't show point if its an artificial point (0,0)
 					if (!isPoint00(feature.geometry.coordinates)) {
 						return L.circleMarker(latlng, { fillColor: colorValueOfLayer, color: colorValueOfLayer, stroke: true, fill: true });
 					}
@@ -109,7 +109,7 @@ function createHTMLCodeForSearchresultSPARQL(sparqlGeoJSON, colorValue) {
 	}
 	//Add locationname if it is available and if its not included in the headings
 	if ((sparqlGeoJSON.features[0].properties.locationName) && (!sparqlGeoJSON.features[0].properties.headings.includes("locationName"))) {
-		htmlData += "<th>" + "Locationname" + "</th>";
+		htmlData += "<th>" + "locationName" + "</th>";
 	}
 	htmlData += "</tr>"
 
@@ -131,7 +131,7 @@ function createHTMLCodeForSearchresultSPARQL(sparqlGeoJSON, colorValue) {
 	htmlData += "</table>"
 	htmlData += "<hr>"
 
-	//Footes buttons
+	//Footer buttons
 	htmlData += "<label class='label-style' style='vertical-align: middle'>" + lang.layercolor + "<input type='color' class='color-picker' value='" + colorValue + "'></label></br></br>"
 	htmlData += "<button class='btn-add-layer-to-layercontrol btn-success btn-footer' data-is-disabled='false' title='" + lang.saveLayer + "'><i class='bi bi-bookmark-plus'></br>" + lang.saveLayer + "</i></button>"
 	htmlData += "<button class='btn-change-tabname btn-success btn-footer' title='" + lang.renameLayer + "'><i class='bi bi-pencil'></br>" + lang.renameLayer + "</i></button>";
@@ -140,7 +140,7 @@ function createHTMLCodeForSearchresultSPARQL(sparqlGeoJSON, colorValue) {
 	return htmlData;
 };
 
-/** Restores the searchresult data when layer is re-enabled in layerControl */
+/** Restores the attribute data when layer is re-enabled in layerControl */
 function restoreSearchresultSparql(layer) {
 
 	//Get GeoJSON from leaflet layer

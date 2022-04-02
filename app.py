@@ -11,9 +11,9 @@ from python_files.nl2sparql import *
 from python_files.location import Location
 from python_files.lemma import Lemma
 from python_files.visualquery import Visualquery
-from python_files.levenshtein import Levenshtein
+from python_files.similaritysearch import SimilaritySearch
 from python_files.statistics import Statistics
-from python_files.voucherdetails import Voucherdetails
+from python_files.recorddetails import Recorddetails
 from python_files.runquery import RunQuery
 
 
@@ -126,7 +126,7 @@ def init_loadLocations():
 
 @app.route("/init_loadLemmata")
 def init_loadLemmata():
-    """Loads all lemmata for autocompelte search
+    """Loads all lemmata for autocomplete search
 
     Returns:
         str: JSON including lemmata
@@ -153,6 +153,7 @@ def searchLocation():
     location_id = response['locationId']
     location_level = response['locationLevel']
 
+    #Query data
     location = Location(location_id, location_level)
     location.get_data_from_db()
     location_data = location.create_geojson()
@@ -177,20 +178,20 @@ def searchLemma():
     return lemma_data
 
 
-@app.route("/searchVoucherdetails", methods=['POST'])
-def searchVoucherdetails():
-    """Voucherdetails
+@app.route("/searchRecorddetails", methods=['POST'])
+def searchRecorddetails():
+    """Recorddetails
 
     Returns:
         str: JSON data
     """
     response = request.get_json()
-    voucher_id = response['voucherId']
+    record_id = response['recordId']
 
-    voucherdetails = Voucherdetails(voucher_id)
-    voucherdetail_data = voucherdetails.get_data_from_db()
+    recorddetails = Recorddetails(record_id)
+    recorddetail_data = recorddetails.get_data_from_db()
 
-    return voucherdetail_data
+    return recorddetail_data
 
 
 @app.route("/searchVisualquery", methods=['POST'])
@@ -209,9 +210,9 @@ def searchVisualquery():
     return visualqueryData
 
 
-@app.route("/searchLevenshtein", methods=['POST'])
+@app.route("/searchSimilarity", methods=['POST'])
 def searchLevenshtein():
-    """Levenshtein
+    """Search similar dialect words
 
     Returns:
         str: GeoJSON data
@@ -221,12 +222,11 @@ def searchLevenshtein():
     levenshtein_value = int(response['levenshteinValue'])
     levenshtein_select = response['levenshteinSelect']
 
-    levenshtein = Levenshtein(
-        input_value, levenshtein_value, levenshtein_select)
-    levenshtein.get_data_from_db()
-    levenshtein_data = levenshtein.search_vouchers()
+    similarity_search = SimilaritySearch(input_value, levenshtein_value, levenshtein_select)
+    similarity_search.get_data_from_db()
+    similarity_data = similarity_search.search_records()
 
-    return levenshtein_data
+    return similarity_data
 
 
 @app.route("/searchStatistics", methods=['POST'])

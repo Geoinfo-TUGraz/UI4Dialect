@@ -1,25 +1,25 @@
 from python_files.init_functions import query_endpoint
 
 
-class Voucherdetails:
+class Recorddetails:
     """
-    A class for querying further information on a voucher.
+    A class for querying further information on a dialect word/record .
 
     Args:
-        voucher_id(str): The id of the voucher for which data should be queried
+        record_id(str): The id of the record for which data should be queried
 
     Attributes:
-        voucher_id(str): The id of the voucher for which data should be queried
+        record_id(str): The id of the record for which data should be queried
     """
 
-    def __init__(self, voucher_id):
-        self.voucher_id = voucher_id
+    def __init__(self, record_id):
+        self.record_id = record_id
 
     def get_data_from_db(self):
-        """Queries the database to get additional information on a particular voucher
+        """Queries the database to get additional information on a particular record
 
         Returns:
-            dict: JSON with voucher data
+            dict: JSON with record data
         """
         querystring = '''
         PREFIX dboe: <http://40.91.234.77/ontology/dboe#>
@@ -27,7 +27,7 @@ class Voucherdetails:
         
         SELECT ?ortName ?gemeindeName ?regionName ?hochdeutsch ?hauptlemma ?nebenlemma ?dbpedia ?beschreibung ?titel ?autor ?erscheinungsjahr WHERE {
             SERVICE <http://localhost:2020/sparql>{
-        <''' + self.voucher_id + '''> dboe:hatBelegzettel ?belegzettel.
+        <''' + self.record_id + '''> dboe:hatBelegzettel ?belegzettel.
         
         OPTIONAL {?belegzettel dboe:hatLokationGemeinde ?gemeindeid.
         ?gemeindeid dboe:hatNameLang ?gemeindeName}.
@@ -38,17 +38,17 @@ class Voucherdetails:
         OPTIONAL {?belegzettel dboe:hatLokationRegion ?regionid.
         ?regionid dboe:hatNameLang ?regionName}.
 
-        OPTIONAL{<''' + self.voucher_id + '''> dboe:hatHauptlemma ?hauptlemmaid.
+        OPTIONAL{<''' + self.record_id + '''> dboe:hatHauptlemma ?hauptlemmaid.
         ?hauptlemmaid dboe:hatHochdeutschlemma ?hochdeutsch.}
 
         OPTIONAL{?hauptlemmaid dboe:hatDBOlemma ?hauptlemma}.
 
         OPTIONAL{?hauptlemmaid owl:sameAs ?dbpedia.}
 
-        OPTIONAL{<''' + self.voucher_id + '''> dboe:hatNebenlemma ?nebenlemmaid.
+        OPTIONAL{<''' + self.record_id + '''> dboe:hatNebenlemma ?nebenlemmaid.
         ?nebenlemmaid dboe:hatDBOlemma ?nebenlemma.}
 
-        OPTIONAL{<''' + self.voucher_id + '''> dboe:hatBedeutung ?bedeutungid.
+        OPTIONAL{<''' + self.record_id + '''> dboe:hatBedeutung ?bedeutungid.
         ?bedeutungid dboe:hatBeschreibung ?beschreibung.}
 
         OPTIONAL{?belegzettel dboe:hatQuelle ?quelleid.

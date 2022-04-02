@@ -4,9 +4,9 @@ import shapely.wkt
 from Levenshtein import distance
 
 
-class Levenshtein:
+class SimilaritySearch:
     """
-    A class for searching similar vouchers using the Levenshtein distance.
+    A class for searching similar dialect words using the Levenshtein distance.
 
     Args:
         input_value(str): The starting word
@@ -27,7 +27,7 @@ class Levenshtein:
         self.results = {}
 
     def get_data_from_db(self):
-        """Queries the database to get the data used for the Levenshtein search"""
+        """Queries the database to get the data used for the similarity search"""
         # Add term to SPARQL query according to the levenshtein_select
         add_term = ""
         if self.levenshtein_select == '1':  # Places
@@ -66,8 +66,8 @@ class Levenshtein:
 
         self.results = query_endpoint(querystring)
 
-    def search_vouchers(self):
-        """Search similar vouchers based on the Levenshtein distance
+    def search_records(self):
+        """Search similar dialect records/words based on the Levenshtein distance
 
         Returns:
             str: GeoJSON dictionary
@@ -79,12 +79,12 @@ class Levenshtein:
         for result in self.results["results"]["bindings"]:
             location_id = result["locationId"]["value"]
             location_name = result["locationName"]["value"]
-            voucher_id = result["belegId"]["value"]
-            voucherdescription = result["bezeichnung"]["value"]
+            record_id = result["belegId"]["value"]
+            record_description = result["bezeichnung"]["value"]
             geom = shapely.wkt.loads(result["geom"]["value"])
 
             # Calculate levenshtein distance
-            edit_dist = distance(voucherdescription, self.input_value)
+            edit_dist = distance(record_description, self.input_value)
 
             # If calculated distance is max the levenshtein value
             if edit_dist <= self.levenshtein_value:
@@ -95,11 +95,11 @@ class Levenshtein:
                         break
 
                 if isAlreadyFeature:
-                    # If the location is already a feature, just add the voucherdescription
-                    feature.properties["belege"][voucher_id] = voucherdescription
+                    # If the location is already a feature, just add the record description
+                    feature.properties["belege"][record_id] = record_description
                 else:
                     # If not, create new feature and add all the data
-                    feature1 = Feature(geom, {"lokationId": location_id, "lokationName": location_name, "belege": {voucher_id: voucherdescription}})
+                    feature1 = Feature(geom, {"lokationId": location_id, "lokationName": location_name, "belege": {record_id: record_description}})
                     features.append(feature1)
 
                 isAlreadyFeature = False
