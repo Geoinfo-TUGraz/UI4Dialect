@@ -185,30 +185,30 @@ class RelationIdentifier:
         return self.input_question
 
 
-class GeospatialRelationIdentifier:
+class SpatialRelationIdentifier:
     """
-    A class for identifying and matching geospatial relations in the processed question.
+    A class for identifying and matching spatial relations in the processed question.
 
     Args:
         input_question(str): The processed input question annotated with classes and relations (Output of the RelationIdentifier)
 
     Attributes:
         input_question(str): The processed input question annotated with classes and relations (Output of the RelationIdentifier)
-        dict_geospatial_relations(dict): Stores the geospatial relations
+        dict_spatial_relations(dict): Stores the spatial relations
     """
 
     def __init__(self, input_question):
         self.input_question = input_question
-        self.dict_geospatial_relations = {'sfIntersects': 'überschneiden',
+        self.dict_spatial_relations = {'sfIntersects': 'überschneiden',
                                           'sfWithin': 'innerhalb',
                                           'sfTouches': 'berühren'}
         # near': ['nahe', 'in der Nähe', 'neben']
 
-    def map_geospatial_relations_to_question(self):
-        """Maps the geospatial relations to the question
+    def map_spatial_relations_to_question(self):
+        """Maps the spatial relations to the question
 
         Returns:
-            list: Processed question annotated with geospatial relations
+            list: Processed question annotated with spatial relations
         """
         count = 0
         # Loop through rows
@@ -217,13 +217,13 @@ class GeospatialRelationIdentifier:
                 word = list_item[2]  # Lemmatized word
 
                 # Extract best matching georelation
-                best_match = process.extractOne(word, self.dict_geospatial_relations)
+                best_match = process.extractOne(word, self.dict_spatial_relations)
                 print("word", word)
                 print("bestmatch", best_match)
 
                 # Check if the match is rated higher than the limit
                 if best_match[1] > 85:
-                    # Append the geospatial relation to the question
+                    # Append the spatial relation to the question
                     self.input_question[count].append(best_match[2])
                     self.input_question[count].append("georelation")
 
@@ -237,10 +237,10 @@ class InstanceIdentifier:
     A class for identifying and matching instances in the processed question.
 
     Args:
-        input_question(str): The processed input question annotated with classes, relations and geospatial relations (Output of the GeospatialRelationIdentifier)
+        input_question(str): The processed input question annotated with classes, relations and spatial relations (Output of the SpatialRelationIdentifier)
 
     Attributes:
-        input_question(str): The processed input question annotated with classes, relations and geospatial relations (Output of the GeospatialRelationIdentifier)
+        input_question(str): The processed input question annotated with classes, relations and spatial relations (Output of the SpatialRelationIdentifier)
         instance(str): Stores the instance found in the question
         instances_and_ids_from_db(dict): Stores the instances and their respective ids from the database
         class_of_instance(str): Stores the class of the instance found in the question
@@ -337,10 +337,10 @@ class QueryConstructor:
     A class for constructing the SPARQL query based on the previously processed question.
 
     Args:
-        input_question(str): The processed input question annotated with classes, relations, geospatial relations and instance (Output of the InstanceIdentifier)
+        input_question(str): The processed input question annotated with classes, relations, spatial relations and instance (Output of the InstanceIdentifier)
 
     Attributes:
-        input_question(str): The processed input question annotated with classes, relations, geospatial relations and instance (Output of the InstanceIdentifier)
+        input_question(str): The processed input question annotated with classes, relations, spatial relations and instance (Output of the InstanceIdentifier)
         question_attributes(list): Stores the annotations of the question (class, relation, georelation, instance)
         question_values(dict): Stores the values from the database which were annotated to the question (ort, gemeinde, region, lemma, beleg, instance, ...)
         query(str): Stores the querystring
@@ -728,9 +728,9 @@ class NL2SPARQL:
         rid.get_predicates_from_db()
         output_rid = rid.map_relation_to_question()
 
-        # Geospatial Relation Identifier
-        grid = GeospatialRelationIdentifier(output_rid)
-        output_grid = grid.map_geospatial_relations_to_question()
+        # Spatial Relation Identifier
+        grid = SpatialRelationIdentifier(output_rid)
+        output_grid = grid.map_spatial_relations_to_question()
 
         # Instance Identifier
         iid = InstanceIdentifier(output_grid)
