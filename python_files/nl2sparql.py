@@ -216,7 +216,7 @@ class SpatialRelationIdentifier:
             if len(list_item) == 10:
                 word = list_item[2]  # Lemmatized word
 
-                # Extract best matching georelation
+                # Extract best matching spatialrelation
                 best_match = process.extractOne(word, self.dict_spatial_relations)
                 print("word", word)
                 print("bestmatch", best_match)
@@ -225,7 +225,7 @@ class SpatialRelationIdentifier:
                 if best_match[1] > 85:
                     # Append the spatial relation to the question
                     self.input_question[count].append(best_match[2])
-                    self.input_question[count].append("georelation")
+                    self.input_question[count].append("spatialrelation")
 
             count = count+1
 
@@ -341,7 +341,7 @@ class QueryConstructor:
 
     Attributes:
         input_question(str): The processed input question annotated with classes, relations, spatial relations and instance (Output of the InstanceIdentifier)
-        question_attributes(list): Stores the annotations of the question (class, relation, georelation, instance)
+        question_attributes(list): Stores the annotations of the question (class, relation, spatialrelation, instance)
         question_values(dict): Stores the values from the database which were annotated to the question (ort, gemeinde, region, lemma, beleg, instance, ...)
         query(str): Stores the querystring
     """
@@ -356,7 +356,7 @@ class QueryConstructor:
         """Stores the question attributes and values in lists"""
         for list_item in self.processed_question:
             if len(list_item) == 12:
-                # class, relation, instance or georelation
+                # class, relation, instance or spatialrelation
                 self.question_attributes.append(list_item[11])
                 # beleg, lemma, ort, region, gemeinde, instance...
                 self.question_values.append(list_item[10])
@@ -548,15 +548,15 @@ class QueryConstructor:
         }''')
         return querystring
 
-    def __construct_CgeoRCI_query(self):
-        """Constructs the SPARQL query for the CgeoRCI case
+    def __construct_CspRCI_query(self):
+        """Constructs the SPARQL query for the CspRCI case
         Example: Welche Gemeinden schneiden die Region xy?
 
         Returns:
             str: Querystring
         """
         class_of_result = self.question_values[0]
-        georelation = self.question_values[1]
+        spatialrelation = self.question_values[1]
         class_of_instance = self.question_values[2]
         instance = self.question_values[3]
 
@@ -599,7 +599,7 @@ class QueryConstructor:
                 SERVICE <http://localhost:8080/strabon-endpoint-3.3.1/Query>{
                     ?locationGeodaten geo:asWKT ?geom.
                     <''' + instance_geodaten + '''> geo:asWKT ?instanceGeometry.
-                    FILTER(geof:''' + georelation + '''(?geom ,?instanceGeometry))
+                    FILTER(geof:''' + spatialrelation + '''(?geom ,?instanceGeometry))
                 }
             }
             ''')
@@ -684,8 +684,8 @@ class QueryConstructor:
         elif self.question_attributes == ['relation', 'class', 'instance']:
             final_query = self.__construct_RCI_query()
 
-        elif self.question_attributes == ['class', 'georelation', 'class', 'instance']:
-            final_query = self.__construct_CgeoRCI_query()
+        elif self.question_attributes == ['class', 'spatialrelation', 'class', 'instance']:
+            final_query = self.__construct_CspRCI_query()
         else:
             raise InternalServerError("Question could not be analyzed correctly")
 
