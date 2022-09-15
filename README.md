@@ -18,7 +18,7 @@ The user can search for a location, the application queries data from the databa
 <img src="images/UI_location.png" alt="Location-Based Search" width="600"/>
 
 ### Lemma-Based Search
-The user can search for a lemma, the application queries data from the database associated with this lemma (e.g. the location).
+The user can search for a lemma, the application queries data from the database associated with this lemma.
 <img src="images/UI_lemma.png" alt="Lemma-Based Search" width="600"/>
 
 ### Visual Query
@@ -26,7 +26,7 @@ The Visual Query allows to query dialect records from a self-defined area.
 <img src="images/UI_vq.png" alt="Visual Query" width="600"/>
 
 ### Spatial Distribution of Similar Dialect Words
-Display the spatial distribution of dialect words that are similar to each other.
+Displays the spatial distribution of dialect words that are similar to each other.
 <img src="images/UI_similarwords.png" alt="Spatial Distribution of Similar Dialect Words" width="600"/>
 
 ### Spatial Distribution of Dialect Data
