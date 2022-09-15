@@ -10,22 +10,29 @@ In this master's thesis, the development of a prototypical user interface for th
 The goal of this project is to visualize spatio-temporal linguistic Linked Data from the dataset and to make interrelationships between the data easier to understand by applying techniques from the fields of Computer Science and GIScience. Furthermore, it is expected to make it easier for users to explore data from the database.
 
 ## System Architecture
+<img src="images/architecture.png" alt="System Architecture" width="500"/>
 
 ## User Interface
 ### Location-Based Search
 The user can search for a location, the application queries data from the database associated with this location.
+<img src="images/UI_location.png" alt="Location-Based Search" width="600"/>
 
 ### Lemma-Based Search
 The user can search for a lemma, the application queries data from the database associated with this lemma (e.g. the location).
+<img src="images/UI_lemma.png" alt="Lemma-Based Search" width="600"/>
 
 ### Visual Query
 The Visual Query allows to query dialect records from a self-defined area.
+<img src="images/UI_vq.png" alt="Visual Query" width="600"/>
 
 ### Spatial Distribution of Similar Dialect Words
 Display the spatial distribution of dialect words that are similar to each other.
+<img src="images/UI_similarwords.png" alt="Spatial Distribution of Similar Dialect Words" width="600"/>
 
 ### Spatial Distribution of Dialect Data
 Provides information about the spatial distribution of dialect records.
+<img src="images/UI_statistics.png" alt="Spatial Distribution of Dialect Data" width="600"/>
 
 ### GeoQA System
 The GeoQA System can be used to answer questions stated in natural language by the user.
+<img src="images/UI_geoqa.png" alt="GeoQA System" width="600"/>
